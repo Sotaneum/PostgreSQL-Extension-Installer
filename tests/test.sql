@@ -13,7 +13,7 @@ AS $BODY$
 
     from postgresql_extension_installer import Installer
 
-    installer = Installer(plpy, 'https://raw.githubusercontent.com/Sotaneum/PostgreSQL-Extension-Installer/master/DEMO/test.query')
+    installer = Installer(plpy, 'https://raw.githubusercontent.com/Sotaneum/PostgreSQL-Extension-Installer/alpha/tests/test.query')
     installer.install()
     print("Success")
 $BODY$;

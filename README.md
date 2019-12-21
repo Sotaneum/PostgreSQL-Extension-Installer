@@ -86,8 +86,8 @@ ALTER FUNCTION m_installer_install();
     2019.12.22.1010
     --<Version>--
     --<Provider>--
-    https://github.com/Sotaneum/PostgreSQL-Extension-Installer/blob/master/postgresql_installer/default.py
-    https://github.com/Sotaneum/PostgreSQL-Extension-Installer/blob/alpha/postgresql_installer/default.py
+    https://raw.githubusercontent.com/Sotaneum/PostgreSQL-Extension-Installer/master/tests/test.query
+    https://raw.githubusercontent.com/Sotaneum/PostgreSQL-Extension-Installer/alpha/tests/test.query
     --<Provider>--
     --<lib>--
     postgresql_deepgeo

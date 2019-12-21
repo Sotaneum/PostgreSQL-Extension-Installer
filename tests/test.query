@@ -3,7 +3,7 @@
 2019.12.18.0103
 --<Version>--
 --<Provider>--
-https://raw.githubusercontent.com/Sotaneum/PostgreSQL-Extension-Installer/master/DEMO/test.query
+https://raw.githubusercontent.com/Sotaneum/PostgreSQL-Extension-Installer/alpha/tests/test.query
 --<Provider>--
 --<lib>--
 postgresql_extension_installer
