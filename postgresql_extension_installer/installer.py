@@ -13,11 +13,14 @@ def _load_install_query(path):
     sub_key = ""
     temp = ""
     data = {}
+    isOk = False
     while True:
         line = f.readline()
         if not line: break
         if "-->" in line and "<--" in line:
             key = line.replace("-->","").replace("<--","").replace("\n","")
+            if key.lower() == "info":
+                isOk = True
             if key not in data:
                 data[key] = {}
             temp = ""
@@ -31,7 +34,7 @@ def _load_install_query(path):
         else:
             temp+=line
     f.close()
-    return data
+    return isOk, data
 
 def log(context):
     file_ = os.path.dirname(os.path.abspath("./")).replace("\\","/") + "/Installer.log"
@@ -54,7 +57,11 @@ class Installer():
             log("Installer >> "+path)
             path = create.folder(path)
             query_path = url.download(install_query, path, ["query"])
-            self._data = _load_install_query(query_path[1] + query_path[0])
+            isOk, self._data = _load_install_query(query_path[1] + query_path[0])
+            if isOk is False:
+                print("Installer >> False -> Failed Load Query")
+                log("Installer >> False -> Failed Load Query")
+                self.data={}
             self._default_data()
         else:
             log("Installer >> Load From Table")
@@ -73,7 +80,9 @@ class Installer():
     def _load_default_data(self):
         default_dir = os.path.dirname(os.path.abspath(__file__)).replace("\\","/") + "/default.py"
         log("_default_data >> " + default_dir)
-        data = _load_install_query(default_dir)
+        isOk, data = _load_install_query(default_dir)
+        if isOk is False:
+            data={}
         return data
 
     def _default_data(self):
@@ -115,10 +124,11 @@ class Installer():
         if "Info" in self._data and "Provider" in self._data["Info"]:
             providers = self._data["Info"]["Provider"].split("\n")
             for provider in providers:
-                new_data = _load_install_query(url.download(provider, "", ["query"]))
-                if "Info" in new_data and "Version" in new_data["Info"]: 
-                    if new_data["Info"]["Version"] >= self._data["Info"]["Version"]:
-                        return False
+                isOk, new_data = _load_install_query(url.download(provider, "", ["query"]))
+                if isOk is True:
+                    if "Info" in new_data and "Version" in new_data["Info"]: 
+                        if new_data["Info"]["Version"] >= self._data["Info"]["Version"]:
+                            return False
         return True
 
     def _uninstall(self, data):
@@ -211,9 +221,10 @@ class Installer():
         try:
             r, code = self.python_lib_update()
             if r == True:
-                self._install_type()
-                self._install_table()
-                self._install_functions()
+                for key in self._data:
+                    if key.lower() == "info":
+                        continue
+                    self._install(self._data, key)
             else:
                 return False, "install >> False -> "+ code
         except Exception as e:
@@ -228,7 +239,7 @@ if __name__ == "__main__":
             print(SQL)
             return []
 
-    installer = Installer(FakePLPY(), "http://duration.digimoon.net/dev/test/pldeepgeo/install.query")
+    installer = Installer(FakePLPY(), "https://raw.githubusercontent.com/Sotaneum/PostgreSQL-Extension-Installer/alpha/tests/test.query")
     installer.install()
     installer.update()
     installer.uninstall()

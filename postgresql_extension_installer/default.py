@@ -1,3 +1,13 @@
+-->Info<--
+--<Version>--
+2019.12.22.1609
+--<Version>--
+--<Provider>--
+https://raw.githubusercontent.com/Sotaneum/PostgreSQL-Extension-Installer/alpha/postgresql_extension_installer/default.py
+--<Provider>--
+--<lib>--
+postgresql_extension_installer
+--<lib>--
 -->Table<--
 --<m_installer_Information>--
 CREATE TABLE m_installer_information(

@@ -5,7 +5,6 @@
 
 - Use our step-by-step guide to get started with `Postgresql Extension Installer` in minutes.
 
-
 ### 1. Download Python
 
 - Get started with Python to use everything in the `Postgresql Extension Installer`. We recommend using the 3.6 version.
@@ -322,6 +321,9 @@ CREATE TYPE TYPE_NAME AS
 
 ## Log
 
+- 2019.12.22.1618
+  - defualt format modify
+  - Provider Bug fix
 - 2019.12.22.0216
   - Python library Install
     - Bug fix
