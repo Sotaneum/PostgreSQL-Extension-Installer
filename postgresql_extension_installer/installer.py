@@ -22,10 +22,11 @@ class Installer():
         self._is_log = is_log
         self._is_print = is_print
         self._download_path = Create.folder(os.path.dirname(os.path.abspath("./")).replace("\\","/") + "/pgextinstall_download/")
-        print(self._download_path)
         self._data = {}
         if self._system_install_check() is False:
-            Query.install(self._plpy, Loader.load_from_default())
+            query = Loader.load_from_default()
+            Query.install(self._plpy, query)
+            Query.install_sql(self._plpy, query)
         else:
             system_query = Loader.load_from_default()
             installed_query = Loader.load_from_db(self._plpy, "me.faena.postgresql_extension_installer")

@@ -31,7 +31,7 @@ CREATE EXTENSION python3u;
 ### 5. Enabling PostgreSQL Extension Installer
 
 ```SQL
-CREATE OR REPLACE FUNCTION m_installer_install()
+CREATE OR REPLACE FUNCTION m_installer_setup()
     RETURNS TEXT
     LANGUAGE 'plpython3u'
 
@@ -41,7 +41,7 @@ AS $BODY$
     # -- ==========================================================
     # --    Installer
 
-    # --    Copyright 2019 LEE DONG GUN(2019.12.22)
+    # --    Copyright 2019 LEE DONG GUN(2019.12.28)
     # -- ==========================================================
 
     from postgresql_extension_installer import Installer
@@ -49,8 +49,6 @@ AS $BODY$
     installer = Installer(plpy)
     return "ok"
 $BODY$;
-
-ALTER FUNCTION m_installer_install();
 ```
 
 ## Documentation
