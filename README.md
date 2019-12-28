@@ -153,8 +153,6 @@ ALTER FUNCTION FUNCTION_NAME();
         return 'TEST'
 
     $BODY$;
-
-    ALTER FUNCTION print_info();
     ```
 
   - 2 or more

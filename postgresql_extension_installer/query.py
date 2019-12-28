@@ -87,23 +87,26 @@ def get_lib_from(query):
 def install_sql(plpy, query):
     name = get_package_name_from(query)
     SQL = ""+\
-        "INSERT INTO m_installer_information(version, sql, name)"+\
-            "VALUES('"+get_version_from(query)+"', '"+json.dumps(query)+"', '"+name+"');"
-    plpy.execute(SQL)
+        "INSERT INTO m_installer_information(version, sql, name) "+\
+            "VALUES($1, $2, $3);"
+    plan = plpy.prepare(SQL, ["text","json","text"])
+    plpy.execute(plan,[get_version_from(query), json.dumps(query), name])
 
 def uninstall_sql(plpy, query):
     name = get_package_name_from(query)
     SQL = ""+\
-        "DELETE FROM m_installer_information"+\
-            "WHERE name='"+name+"';"
-    plpy.execute(SQL)
+        "DELETE FROM m_installer_information "+\
+            "WHERE name=$1;"
+    plan = plpy.prepare(SQL, ["text"])
+    plpy.execute(plan,[name])
 
 def update_sql(plpy, query):
     SQL = ""+\
-        "UPDATE m_installer_information"+\
-            "SET version='"+get_version_from(query)+"', sql='"+json.dumps(query)+"'"+\
-                "WHERE name='"+get_package_name_from(query)+"';"
-    plpy.execute(SQL)
+        "UPDATE m_installer_information "+\
+            "SET version=$1, sql=$2 "+\
+                "WHERE name=$3;"
+    plan = plpy.prepare(SQL, ["text","json","text"])
+    plpy.execute(plan,[get_version_from(query), json.dumps(query), get_package_name_from(query)])
 
 ###############
 # KEY
