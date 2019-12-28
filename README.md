@@ -129,7 +129,6 @@ CREATE TABLE TABLE_NAME(
 --<FUNCTION_NAME>--
 CREATE OR REPLACE FUNCTION FUNCTION_NAME()
     -- INSERT HERE FUNCTION
-ALTER FUNCTION FUNCTION_NAME();
 ```
 
 - Example
@@ -176,8 +175,6 @@ ALTER FUNCTION FUNCTION_NAME();
         return 'TEST'
 
     $BODY$;
-
-    ALTER FUNCTION print_info();
     --<create_table>--
     CREATE OR REPLACE FUNCTION create_table(
         character varying
@@ -199,9 +196,6 @@ ALTER FUNCTION FUNCTION_NAME();
             quote_literal(model_name_str);
     END;
     $BODY$;
-
-    ALTER FUNCTION create_table(character varying);
-
     COMMENT ON FUNCTION create_table(character varying)
         IS 'args: table_name';
     ```
