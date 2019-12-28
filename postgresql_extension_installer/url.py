@@ -1,7 +1,11 @@
-import create
 import http.client as httplib
 import shutil
 import os 
+
+try:
+    from . import Create
+except:
+    import create as Create
 
 def parse(url):
     domain = url.split("/")[0]
@@ -28,9 +32,9 @@ def download(url, to_path, ext_list):
     protocol = url.split("://")
     file_ext = url.split(".")[-1]
     if file_ext in ext_list:
-        file_name = create.name(file_ext)
+        file_name = Create.name(file_ext)
     else:
-        file_name = create.name(ext_list[0])
+        file_name = Create.name(ext_list[0])
     if 'http' in protocol[0] or 'https' in protocol[0]:
         domain, get = parse(protocol[1])
         page = get_page(protocol[0], domain, get)

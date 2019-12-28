@@ -1,4 +1,7 @@
-import os, random, datetime, uuid
+import os
+import random
+import datetime
+import uuid
 
 def set_path(path):
     path = path.replace("\\", "/")
@@ -21,7 +24,7 @@ def folder(name):
         repath = str(path).split("/"+repath)[0]
         folder(repath)
         folder(path)
-    if path[-1] is not '/':
+    if path[-1] != '/':
         path = path+"/"
     return path
 
@@ -41,3 +44,5 @@ def name(file_format, path=None):
         if os.path.isfile(path+file_name):
             return name(file_format, path)
     return file_name + uuid.uuid4().hex + file_format
+
+
