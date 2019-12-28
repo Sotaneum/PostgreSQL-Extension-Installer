@@ -1,20 +1,17 @@
 -->Info<--
+--<Name>--
+me.faena.installer
 --<Version>--
 2019.12.18.0103
---<Version>--
 --<Provider>--
-https://raw.githubusercontent.com/Sotaneum/PostgreSQL-Extension-Installer/alpha/tests/test.query
---<Provider>--
+https://raw.githubusercontent.com/Sotaneum/PostgreSQL-Extension-Installer/beta/postgresql_extension_installer/default.py
+https://raw.githubusercontent.com/Sotaneum/PostgreSQL-Extension-Installer/alpha/postgresql_extension_installer/default.py
 --<lib>--
 postgresql_extension_installer
 tensorflow
---<lib>--
 -->Table<--
---<mdeepgeo_model>--
-CREATE TABLE log
+--<logs>--
+CREATE TABLE logs
 (
     context text NOT NULL
 );
-ALTER TABLE mdeepgeo_model;
---<mdeepgeo_model>--
--->Function<--
