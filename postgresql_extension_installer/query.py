@@ -114,7 +114,9 @@ def update_sql(plpy, query):
 
 def install_from_key(plpy, query, key):
     if key in query:
-        for sub_key in query[key]:
+        sub_keys = list(query[key].keys())
+        sub_keys.reverse()
+        for sub_key in sub_keys:
             plpy.execute(query[key][sub_key])
         return True
     return False
@@ -122,15 +124,18 @@ def install_from_key(plpy, query, key):
 def uninstall_from_key(plpy, query, key):
     if key in query:
         for sub_key in query[key]:
-            SQL = "DROP " + key + " " + sub_key
-            plpy.execute(SQL)
+            SQL = "DROP " + key + " IF EXISTS " + sub_key + " CASCADE;"
+            try:
+                plpy.execute(SQL)
+            except:
+                pass
         return True
     return False
 
 def update_from_key(plpy, old_query, new_query, key):
     old_verison = get_version_from(old_query)
-    new_query = get_version_from(new_query)
-    if old_verison != new_query:
+    new_verison = get_version_from(new_query)
+    if old_verison != new_verison:
         uninstall_from_key(plpy, old_query, key)
         install_from_key(plpy, new_query, key)
 
@@ -151,9 +156,11 @@ def uninstall(plpy, query):
     return True
 
 def update(plpy, old_query, new_query):
-    for key in old_query:
-        if key != 'info':
-            update_from_key(plpy, old_query, new_query, key)
+    old_verison = get_version_from(old_query)
+    new_version = get_version_from(new_query)
+    if old_verison != new_version:
+        uninstall(plpy, old_query)
+        install(plpy, new_query)
     return True
 
 ###############
