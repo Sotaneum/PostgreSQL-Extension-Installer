@@ -2,11 +2,11 @@
 --<name>--
 me.faena.postgresql_extension_installer
 --<Version>--
-2019.12.28.2228
+2019.12.29.0013
 --<lib>--
 postgresql_extension_installer
 --<Provider>--
-https://raw.githubusercontent.com/Sotaneum/PostgreSQL-Extension-Installer/alpha/postgresql_extension_installer/default.py
+https://raw.githubusercontent.com/Sotaneum/PostgreSQL-Extension-Installer/beta/postgresql_extension_installer/default.py
 -->Table<--
 --<m_installer_Information>--
 CREATE TABLE m_installer_information(

@@ -49,6 +49,7 @@ AS $BODY$
     installer = Installer(plpy)
     return "ok"
 $BODY$;
+SELECT m_installer_setup();
 ```
 
 ## Documentation
@@ -257,7 +258,7 @@ CREATE TYPE TYPE_NAME AS
 - Example
 
     ```SQL
-    SELECT m_installer_install()
+    SELECT m_installer_install("https://raw.githubusercontent.com/Sotaneum/PostgreSQL-Extension-Installer/beta/postgresql_extension_installer/default.py")
     ```
 
 ##### Update
@@ -267,7 +268,7 @@ CREATE TYPE TYPE_NAME AS
 - Example
 
     ```SQL
-    SELECT m_installer_update();
+    SELECT m_installer_update("me.faena.postgresql_extension_installer");
     ```
 
 ##### Uninsall
@@ -277,7 +278,7 @@ CREATE TYPE TYPE_NAME AS
 - Example
 
     ```SQL
-    SELECT m_installer_uninstall();
+    SELECT m_installer_uninstall("me.faena.postgresql_extension_installer");
     ```
 
 ##### Python Library Install(Update)
@@ -287,7 +288,7 @@ CREATE TYPE TYPE_NAME AS
 - Example
 
     ```SQL
-    SELECT m_installer_pylib_update();
+    SELECT m_installer_pylib_update("me.faena.postgresql_extension_installer");
     ```
 
 ##### Remove Cache
@@ -302,6 +303,11 @@ CREATE TYPE TYPE_NAME AS
 
 ## Log
 
+- 2019.12.29.0014
+  - Bug fix
+    - update
+    - insert
+    - delete
 - 2019.12.28.1256
   - create
     - loader
