@@ -66,31 +66,29 @@ ALTER FUNCTION m_installer_install();
 
 ```SQL
 -->Info<--
+--<Name>--
+    -- INSERT UNIQUE NAME HERE (e.q com.example.packagename)
 --<Version>--
     -- INSERT VERSION HERE
---<Version>--
 --<Provider>--
     -- INSERT PROVIDER HERE
---<Provider>--
 --<lib>--
     -- INSERT PYTHON LIBRARY HERE
---<lib>--
 ```
 
 - Example
 
     ```SQL
     -->Info<--
+    --<Name>--
+    me.faena.postgresql_extension_installer
     --<Version>--
     2019.12.22.1010
-    --<Version>--
     --<Provider>--
     https://raw.githubusercontent.com/Sotaneum/PostgreSQL-Extension-Installer/master/tests/test.query
     https://raw.githubusercontent.com/Sotaneum/PostgreSQL-Extension-Installer/alpha/tests/test.query
-    --<Provider>--
     --<lib>--
     postgresql_deepgeo
-    --<lib>--
     ```
 
 ##### Table
@@ -101,7 +99,6 @@ ALTER FUNCTION m_installer_install();
 CREATE TABLE TABLE_NAME(
    -- INSERT HERE COLUMN
 );
---<TABLE_NAME>--
 ```
 
 - Example
@@ -112,7 +109,6 @@ CREATE TABLE TABLE_NAME(
     CREATE TABLE sql_list(
         sql json
     );
-    --<sql_list>--
     ```
 
   - 2 or more
@@ -123,12 +119,10 @@ CREATE TABLE TABLE_NAME(
     CREATE TABLE sql_list(
         sql json
     );
-    --<sql_list>--
     --<log_list>--
     CREATE TABLE log_list(
         log text
     );
-    --<log_list>--
     ```
 
 ##### Function
@@ -139,7 +133,6 @@ CREATE TABLE TABLE_NAME(
 CREATE OR REPLACE FUNCTION FUNCTION_NAME()
     -- INSERT HERE FUNCTION
 ALTER FUNCTION FUNCTION_NAME();
---<FUNCTION_NAME>--
 ```
 
 - Example
@@ -165,7 +158,6 @@ ALTER FUNCTION FUNCTION_NAME();
     $BODY$;
 
     ALTER FUNCTION print_info();
-    --<print_info>--
     ```
 
   - 2 or more
@@ -191,7 +183,6 @@ ALTER FUNCTION FUNCTION_NAME();
     $BODY$;
 
     ALTER FUNCTION print_info();
-    --<print_info>--
     --<create_table>--
     CREATE OR REPLACE FUNCTION create_table(
         character varying
@@ -218,7 +209,6 @@ ALTER FUNCTION FUNCTION_NAME();
 
     COMMENT ON FUNCTION create_table(character varying)
         IS 'args: table_name';
-    --<create_table>--
     ```
 
 ##### Type
@@ -230,7 +220,6 @@ CREATE TYPE TYPE_NAME AS
 (
     -- INSERT HERE COLUMN
 );
---<TYPE_NAME>--
 ```
 
 - Example
@@ -243,7 +232,6 @@ CREATE TYPE TYPE_NAME AS
         x int,
         y int
     );
-    --<point>--
     ```
 
   - 2 or more
@@ -256,13 +244,11 @@ CREATE TYPE TYPE_NAME AS
         x int,
         y int
     );
-    --<point>--
     --<mpoint>--
     CREATE TYPE mpoint AS
     (
         point point[]
     );
-    --<mpoint>--
     ```
 
 ##### Other
