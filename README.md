@@ -32,7 +32,7 @@ CREATE EXTENSION python3u;
 
 ```SQL
 CREATE OR REPLACE FUNCTION m_installer_install()
-    RETURNS Boolean
+    RETURNS TEXT
     LANGUAGE 'plpython3u'
 
     COST 100
@@ -46,9 +46,8 @@ AS $BODY$
 
     from postgresql_extension_installer import Installer
 
-    installer = Installer(plpy, YOUR_QUERY_FILE_URL)
-    installer.install()
-    print("Success")
+    installer = Installer(plpy)
+    return "ok"
 $BODY$;
 
 ALTER FUNCTION m_installer_install();
